@@ -3,7 +3,7 @@ services:
     build: .
     image: php83-composer
     volumes:
-      - ./src :/var/www
+      - ./src:/var/www
     depends_on:
       - postgres
     working_dir: /var/www
