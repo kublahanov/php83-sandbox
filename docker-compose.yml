@@ -3,6 +3,17 @@ services:
     build: .
     image: php83-composer
     volumes:
-      - ./:/var/www
+      - ./src :/var/www
+    depends_on:
+      - postgres
     working_dir: /var/www
     command: tail -f /dev/null  # Чтобы контейнер не завершался
+
+  postgres:
+    image: postgres:15
+    environment:
+      POSTGRES_PASSWORD: password
+      POSTGRES_USER: app
+      POSTGRES_DB: app
+    ports:
+      - "5432:5432"

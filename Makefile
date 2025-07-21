@@ -1,8 +1,12 @@
+.NOTPARALLEL:
+
 build:
-	docker build --no-cache -t php83-composer .
+	docker build --progress=plain --no-cache -t php83-composer .
 
 start:
 	docker compose up -d
 
 stop:
-	docker compose down
+	docker compose down -q
+
+.PHONY: build start stop
