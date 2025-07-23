@@ -1,13 +1,18 @@
 services:
   app:
-    build: .
+    build:
+      context: .
+      args:
+        USER_ID: ${USER_ID:-1000}  # Берет из .env или использует 1000
+        GROUP_ID: ${GROUP_ID:-1000}
     image: php83-composer
     volumes:
       - ./src:/var/www
-    depends_on:
-      - postgres
     working_dir: /var/www
-    command: tail -f /dev/null  # Чтобы контейнер не завершался
+    command: tail -f /dev/null  # Режим разработки (CLI)
+    # Для production: удалите command и раскомментируйте:
+    # ports:
+    #   - "9000:9000"  # Порт FPM
 
   postgres:
     image: postgres:15
@@ -17,3 +22,8 @@ services:
       POSTGRES_DB: app
     ports:
       - "5432:5432"
+    volumes:
+      - pg_data:/var/lib/postgresql/data
+
+volumes:
+  pg_data:
