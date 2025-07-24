@@ -1,2 +1,4 @@
 .idea
 .local
+src
+!src/.gitkeep
