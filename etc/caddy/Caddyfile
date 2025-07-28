@@ -1,0 +1,5 @@
+localhost, backend.local {
+    root * /var/www/jwt-auth-template-server-api-laravel-12/public
+    php_fastcgi app:9000
+    file_server
+}
