@@ -16,17 +16,24 @@ services:
     image: ${PROJECT_PREFIX}-postgres:latest
     build:
       context: ./docker/postgres
+      args:  # Явно передаём переменные как build-args
+        DB_DATABASE: ${DB_DATABASE:-jwt-auth-api}
+        DB_USERNAME: ${DB_USERNAME:-jwt-auth-api-user}
+        DB_PASSWORD: ${DB_PASSWORD:-jwt-auth-api-password}
     environment:
-      DB_DATABASE: ${DB_DATABASE:-jwt-auth-api}
-      DB_USERNAME: ${DB_USERNAME:-jwt-auth-api-user}
-      DB_PASSWORD: ${DB_PASSWORD:-jwt-auth-api-password}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-jwt-auth-api-password}  # Пароль суперпользователя
+      POSTGRES_USER: ${POSTGRES_USER:-postgres}  # Опционально, по умолчанию 'postgres'
+      POSTGRES_DB: ${DB_DATABASE:-jwt-auth-api}  # Основная БД
+      DB_DATABASE: ${DB_DATABASE:-jwt-auth-api}  # Основная БД
+      DB_USERNAME: ${DB_USERNAME:-jwt-auth-api-user}  # Ваше приложение
+      DB_PASSWORD: ${DB_PASSWORD:-jwt-auth-api-password}  # Пароль приложения
       DB_PORT: ${DB_PORT:-5432}
     ports:
       - "${HOST_DB_PORT:-5432}:${DB_PORT:-5432}"
     volumes:
-      - ${PROJECT_PREFIX}_pg_data:/var/lib/postgresql/data
-      - ./etc/postgres/initdb/:/docker-entrypoint-initdb.d/
-      - ./docker/postgres/config/:/etc/postgresql/
+      - pg_data:/var/lib/postgresql/data
+      # - ./etc/postgres/initdb/:/docker-entrypoint-initdb.d/
+      # - ./docker/postgres/config/:/etc/postgresql/
 
   caddy:
     image: ${PROJECT_PREFIX}-caddy:latest
@@ -36,11 +43,13 @@ services:
       - "80:80"
       - "443:443"
     volumes:
-      - ./etc/caddy:/etc/caddy
-      - ${PROJECT_PREFIX}_caddy_data:/data
+      - caddy_data:/data
+      # - ./etc/caddy:/etc/caddy
     depends_on:
       - app
 
 volumes:
-  ${PROJECT_PREFIX}_pg_data:
-  ${PROJECT_PREFIX}_caddy_data:
+  pg_data:
+    name: ${PROJECT_PREFIX}_pg_data
+  caddy_data:
+    name: ${PROJECT_PREFIX}_caddy_data
