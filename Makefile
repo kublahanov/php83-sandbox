@@ -1,10 +1,10 @@
 .NOTPARALLEL:
 
 build:
-	docker build --progress=plain --no-cache -t php83-composer .
+	docker build --progress=plain --no-cache -t php83-composer:latest . && docker image prune -f
 
 start:
-	docker compose up -d --force-recreate
+	docker compose up -d
 
 stop:
 	docker compose down

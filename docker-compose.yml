@@ -1,11 +1,11 @@
 services:
   app:
+    image: ${PROJECT_PREFIX}-php83:latest
     build:
-      context: .
+      context: ./docker/php83
       args:
-        USER_ID: ${USER_ID:-1000}  # Берет из .env или использует 1000
+        USER_ID: ${USER_ID:-1000}
         GROUP_ID: ${GROUP_ID:-1000}
-    image: php83-composer
     volumes:
       - ./src:/var/www
     working_dir: /var/www
@@ -13,39 +13,34 @@ services:
        - "9000:9000"  # Порт FPM
 
   postgres:
-    image: postgres:15
+    image: ${PROJECT_PREFIX}-postgres:latest
+    build:
+      context: ./docker/postgres
     environment:
-      POSTGRES_PASSWORD: password
-      POSTGRES_USER: app
-      POSTGRES_DB: app
+      DB_DATABASE: ${DB_DATABASE:-jwt-auth-api}
+      DB_USERNAME: ${DB_USERNAME:-jwt-auth-api-user}
+      DB_PASSWORD: ${DB_PASSWORD:-jwt-auth-api-password}
+      DB_PORT: ${DB_PORT:-5432}
     ports:
-      - "5432:5432"
+      - "${HOST_DB_PORT:-5432}:${DB_PORT:-5432}"
     volumes:
-      - pg_data:/var/lib/postgresql/data
-
-#  nginx:
-#    image: nginx:alpine
-#    ports:
-#      - "443:443"
-#      - "80:80"
-#    volumes:
-#      - ./etc/nginx/nginx.conf:/etc/nginx/conf.d/default.conf
-#      - ./storage/app/certs:/etc/nginx/certs
-#    depends_on:
-#      - app
+      - ${PROJECT_PREFIX}_pg_data:/var/lib/postgresql/data
+      - ./etc/postgres/initdb/:/docker-entrypoint-initdb.d/
+      - ./docker/postgres/config/:/etc/postgresql/
 
   caddy:
-    image: caddy:alpine
+    image: ${PROJECT_PREFIX}-caddy:latest
+    build:
+      context: ./docker/caddy
     ports:
       - "80:80"
       - "443:443"
     volumes:
-      - ./etc/caddy/Caddyfile:/etc/caddy/Caddyfile
-      - ./src:/var/www
-      - caddy_data:/data
+      - ./etc/caddy:/etc/caddy
+      - ${PROJECT_PREFIX}_caddy_data:/data
     depends_on:
       - app
 
 volumes:
-  pg_data:
-  caddy_data:
+  ${PROJECT_PREFIX}_pg_data:
+  ${PROJECT_PREFIX}_caddy_data:
