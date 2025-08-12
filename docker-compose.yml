@@ -17,16 +17,16 @@ services:
     build:
       context: ./docker/postgres
       args:  # Явно передаём переменные как build-args
-        DB_DATABASE: ${DB_DATABASE:-jwt-auth-api}
-        DB_USERNAME: ${DB_USERNAME:-jwt-auth-api-user}
-        DB_PASSWORD: ${DB_PASSWORD:-jwt-auth-api-password}
+        DB_DATABASE: ${DB_DATABASE:-jwt_auth_api}
+        DB_USERNAME: ${DB_USERNAME:-jwt_auth_api_user}
+        DB_PASSWORD: ${DB_PASSWORD:-jwt_auth_api_password}
     environment:
-      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-jwt-auth-api-password}  # Пароль суперпользователя
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-jwt_auth_api_password}  # Пароль суперпользователя
       POSTGRES_USER: ${POSTGRES_USER:-postgres}  # Опционально, по умолчанию 'postgres'
-      POSTGRES_DB: ${DB_DATABASE:-jwt-auth-api}  # Основная БД
-      DB_DATABASE: ${DB_DATABASE:-jwt-auth-api}  # Основная БД
-      DB_USERNAME: ${DB_USERNAME:-jwt-auth-api-user}  # Ваше приложение
-      DB_PASSWORD: ${DB_PASSWORD:-jwt-auth-api-password}  # Пароль приложения
+      POSTGRES_DB: ${DB_DATABASE:-jwt_auth_api}  # Основная БД
+      DB_DATABASE: ${DB_DATABASE:-jwt_auth_api}  # Основная БД
+      DB_USERNAME: ${DB_USERNAME:-jwt_auth_api_user}  # Ваше приложение
+      DB_PASSWORD: ${DB_PASSWORD:-jwt_auth_api_password}  # Пароль приложения
       DB_PORT: ${DB_PORT:-5432}
     ports:
       - "${HOST_DB_PORT:-5432}:${DB_PORT:-5432}"
