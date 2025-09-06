@@ -1,5 +1,26 @@
-localhost, backend.local {
+backend.local {
     root * /var/www/jwt-auth-template-server-api-laravel-12/public
-    php_fastcgi app:9000
-    file_server
+
+    # Handle PHP files
+    @php {
+        path *.php
+    }
+
+    # Handle static files
+    @static {
+        file {
+            try_files {path} {path}/ /index.php?{query}
+        }
+    }
+
+    # PHP-FPM обработка
+    php_fastcgi @php app:9000 {
+        try_files {path} {path}/ /index.php?{query}
+    }
+
+    # File server for static files
+    file_server @static
+
+    # Fallback to index.php for front controller
+    rewrite @static /index.php?{query}
 }
