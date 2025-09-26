@@ -20,10 +20,10 @@ backend.local {
     }
 
     # Явное правило для корневого пути
-    @root {
-        path /
-    }
-    rewrite @root /index.php
+    # @root {
+    #     path /
+    # }
+    # rewrite @root /index.php
 
     # Для SPA - все запросы на index.php
     try_files {path} {path}/ /index.php?{query}

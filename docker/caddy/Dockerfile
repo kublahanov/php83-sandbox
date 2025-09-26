@@ -1,12 +1,8 @@
 FROM caddy:2.7-alpine
 LABEL authors="https://github.com/kublahanov"
 
-# Меняем пользователя на вашего
-ARG USER_ID=1000
-ARG GROUP_ID=1000
-RUN addgroup -g $GROUP_ID caddy-user && \
-    adduser -u $USER_ID -G caddy-user -D caddy-user
+# Просто создаем папки - Caddy сам разберется с правами
+RUN mkdir -p /data/caddy/pki
 
-USER caddy-user
-
-COPY ./etc/ /etc/caddy/
+# Копируем Caddyfile
+COPY ./etc/Caddyfile /etc/caddy/Caddyfile
