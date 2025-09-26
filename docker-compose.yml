@@ -43,7 +43,9 @@ services:
       - "80:80"
       - "443:443"
     volumes:
-      - caddy_data:/data
+      - ./data/caddy:/data  # Локальная папка
+      # - caddy_data:/data
+      - ./src:/var/www
       # - ./etc/caddy:/etc/caddy
     depends_on:
       - app

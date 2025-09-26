@@ -1,26 +1,30 @@
 backend.local {
     root * /var/www/jwt-auth-template-server-api-laravel-12/public
 
-    # Handle PHP files
-    @php {
-        path *.php
-    }
-
-    # Handle static files
-    @static {
-        file {
-            try_files {path} {path}/ /index.php?{query}
-        }
+    # Включаем логирование для дебага
+    log {
+        output stdout
+        format console
     }
 
     # PHP-FPM обработка
-    php_fastcgi @php app:9000 {
-        try_files {path} {path}/ /index.php?{query}
+    php_fastcgi app:9000 {
+        # Разрешаем доступ к файлам с другими правами
+        resolve_root_symlink
+        trusted_proxies private_ranges
     }
 
-    # File server for static files
-    file_server @static
+    # File server
+    file_server {
+        index index.php index.html
+    }
 
-    # Fallback to index.php for front controller
-    rewrite @static /index.php?{query}
+    # Явное правило для корневого пути
+    @root {
+        path /
+    }
+    rewrite @root /index.php
+
+    # Для SPA - все запросы на index.php
+    try_files {path} {path}/ /index.php?{query}
 }
