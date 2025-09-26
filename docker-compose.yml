@@ -1,6 +1,7 @@
 services:
   app:
     image: ${PROJECT_PREFIX}-php83:latest
+    pull_policy: never
     build:
       context: ./docker/php83
       args:
@@ -14,6 +15,7 @@ services:
 
   postgres:
     image: ${PROJECT_PREFIX}-postgres:latest
+    pull_policy: never
     build:
       context: ./docker/postgres
       args:  # Явно передаём переменные как build-args
@@ -37,16 +39,15 @@ services:
 
   caddy:
     image: ${PROJECT_PREFIX}-caddy:latest
+    pull_policy: never
     build:
       context: ./docker/caddy
     ports:
       - "80:80"
       - "443:443"
     volumes:
-      - ./data/caddy:/data  # Локальная папка
-      # - caddy_data:/data
+      - caddy_data:/data
       - ./src:/var/www
-      # - ./etc/caddy:/etc/caddy
     depends_on:
       - app
 
