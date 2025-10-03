@@ -1,9 +1,10 @@
 services:
   app:
     image: ${PROJECT_PREFIX}-php83:latest
+    container_name: php83_sandbox_app
     pull_policy: never
     build:
-      context: ./docker/php83
+      context: ./php83
       args:
         USER_ID: ${USER_ID:-1000}
         GROUP_ID: ${GROUP_ID:-1000}
@@ -15,20 +16,21 @@ services:
 
   postgres:
     image: ${PROJECT_PREFIX}-postgres:latest
+    container_name: php83_sandbox_postgres
     pull_policy: never
     build:
-      context: ./docker/postgres
+      context: ./postgres
       args:  # Явно передаём переменные как build-args
-        DB_DATABASE: ${DB_DATABASE:-my_new_project}
-        DB_USERNAME: ${DB_USERNAME:-my_new_project_user}
-        DB_PASSWORD: ${DB_PASSWORD:-my_new_project_password}
+        DB_DATABASE: ${DB_DATABASE:-php83_sandbox}
+        DB_USERNAME: ${DB_USERNAME:-php83_sandbox_user}
+        DB_PASSWORD: ${DB_PASSWORD:-php83_sandbox_password}
     environment:
-      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-my_new_project_password}  # Пароль суперпользователя
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-php83_sandbox_password}  # Пароль суперпользователя
       POSTGRES_USER: ${POSTGRES_USER:-postgres}  # Опционально, по умолчанию 'postgres'
-      POSTGRES_DB: ${DB_DATABASE:-my_new_project}  # Основная БД
-      DB_DATABASE: ${DB_DATABASE:-my_new_project}  # Основная БД
-      DB_USERNAME: ${DB_USERNAME:-my_new_project_user}  # Ваше приложение
-      DB_PASSWORD: ${DB_PASSWORD:-my_new_project_password}  # Пароль приложения
+      POSTGRES_DB: ${DB_DATABASE:-php83_sandbox}  # Основная БД
+      DB_DATABASE: ${DB_DATABASE:-php83_sandbox}  # Основная БД
+      DB_USERNAME: ${DB_USERNAME:-php83_sandbox_user}  # Ваше приложение
+      DB_PASSWORD: ${DB_PASSWORD:-php83_sandbox_password}  # Пароль приложения
       DB_PORT: ${DB_PORT:-5432}
     ports:
       - "${HOST_DB_PORT:-5432}:${DB_PORT:-5432}"
@@ -37,9 +39,10 @@ services:
 
   caddy:
     image: ${PROJECT_PREFIX}-caddy:latest
+    container_name: php83_sandbox_caddy
     pull_policy: never
     build:
-      context: ./docker/caddy
+      context: ./caddy
     ports:
       - "80:80"
       - "443:443"

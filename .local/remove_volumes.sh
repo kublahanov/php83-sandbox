@@ -2,4 +2,4 @@
 
 # Скрипт для удаления Docker томов проекта
 
-docker volume rm my_new_project_pg_data my_new_project_caddy_data
+docker volume rm php83_sandbox_pg_data php83_sandbox_caddy_data

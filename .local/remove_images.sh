@@ -2,4 +2,4 @@
 
 # Скрипт для удаления Docker образов проекта
 
-docker rmi my_new_project-php83:latest my_new_project-caddy:latest my_new_project-postgres:latest
+docker rmi php83_sandbox-php83:latest php83_sandbox-caddy:latest php83_sandbox-postgres:latest
