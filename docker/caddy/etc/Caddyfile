@@ -1,5 +1,5 @@
 backend.local {
-    root * /var/www/jwt-auth-template-server-api-laravel-12/public
+    root * /var/www/html/public
 
     # Включаем логирование для дебага
     log {
@@ -18,12 +18,6 @@ backend.local {
     file_server {
         index index.php index.html
     }
-
-    # Явное правило для корневого пути
-    # @root {
-    #     path /
-    # }
-    # rewrite @root /index.php
 
     # Для SPA - все запросы на index.php
     try_files {path} {path}/ /index.php?{query}

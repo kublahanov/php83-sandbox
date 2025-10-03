@@ -11,7 +11,7 @@ services:
       - ./src:/var/www
     working_dir: /var/www
     ports:
-       - "9000:9000"  # Порт FPM
+      - "9000:9000"  # Порт FPM
 
   postgres:
     image: ${PROJECT_PREFIX}-postgres:latest
@@ -19,23 +19,21 @@ services:
     build:
       context: ./docker/postgres
       args:  # Явно передаём переменные как build-args
-        DB_DATABASE: ${DB_DATABASE:-jwt_auth_api}
-        DB_USERNAME: ${DB_USERNAME:-jwt_auth_api_user}
-        DB_PASSWORD: ${DB_PASSWORD:-jwt_auth_api_password}
+        DB_DATABASE: ${DB_DATABASE:-my_new_project}
+        DB_USERNAME: ${DB_USERNAME:-my_new_project_user}
+        DB_PASSWORD: ${DB_PASSWORD:-my_new_project_password}
     environment:
-      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-jwt_auth_api_password}  # Пароль суперпользователя
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-my_new_project_password}  # Пароль суперпользователя
       POSTGRES_USER: ${POSTGRES_USER:-postgres}  # Опционально, по умолчанию 'postgres'
-      POSTGRES_DB: ${DB_DATABASE:-jwt_auth_api}  # Основная БД
-      DB_DATABASE: ${DB_DATABASE:-jwt_auth_api}  # Основная БД
-      DB_USERNAME: ${DB_USERNAME:-jwt_auth_api_user}  # Ваше приложение
-      DB_PASSWORD: ${DB_PASSWORD:-jwt_auth_api_password}  # Пароль приложения
+      POSTGRES_DB: ${DB_DATABASE:-my_new_project}  # Основная БД
+      DB_DATABASE: ${DB_DATABASE:-my_new_project}  # Основная БД
+      DB_USERNAME: ${DB_USERNAME:-my_new_project_user}  # Ваше приложение
+      DB_PASSWORD: ${DB_PASSWORD:-my_new_project_password}  # Пароль приложения
       DB_PORT: ${DB_PORT:-5432}
     ports:
       - "${HOST_DB_PORT:-5432}:${DB_PORT:-5432}"
     volumes:
       - pg_data:/var/lib/postgresql/data
-      # - ./etc/postgres/initdb/:/docker-entrypoint-initdb.d/
-      # - ./docker/postgres/config/:/etc/postgresql/
 
   caddy:
     image: ${PROJECT_PREFIX}-caddy:latest
