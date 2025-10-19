@@ -28,15 +28,15 @@ cd php83-sandbox
 **2**. Запустите контейнеры c помощью скрипта "start_local.sh".
 
 ```bash
-./local/start_local.sh
+./.local/start_local.sh
 ```
 
 Если скрипт не запускается, возможно в папке .local отсутствуют необходимые права.
 Попробуйте выполнить следующие команды:
 
 ```bash
-sudo chown -R $USER:$USER ./local
-chmod +x ./local/*.sh
+sudo chown -R $USER:$USER ./.local
+chmod +x ./.local/*.sh
 ```
 
 Затем повторите пункт **2**.
