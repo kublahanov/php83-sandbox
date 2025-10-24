@@ -1,4 +1,8 @@
 .idea
 .vscode
-src
+/data
+/docker/data
 !src/.gitkeep
+!src/html/.gitkeep
+!src/html/public/.gitkeep
+!src/html/public/index.php

@@ -24,5 +24,9 @@ RUN apk add --no-cache shadow && \
     usermod -u $USER_ID www-data && \
     groupmod -g $GROUP_ID www-data
 
+# Создаем структуру папок с правильными правами
+RUN mkdir -p /var/www/html/public && \
+    chown -R www-data:www-data /var/www
+
 WORKDIR /var/www
 USER www-data
