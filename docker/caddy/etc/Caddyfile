@@ -1,24 +1,8 @@
-backend.local {
+localhost {
     root * /var/www/html/public
-
-    # Включаем логирование для дебага
-    log {
-        output stdout
-        format console
-    }
-
-    # PHP-FPM обработка
-    php_fastcgi app:9000 {
-        # Разрешаем доступ к файлам с другими правами
-        resolve_root_symlink
-        trusted_proxies private_ranges
-    }
-
-    # File server
-    file_server {
-        index index.php index.html
-    }
-
-    # Для SPA - все запросы на index.php
+    php_fastcgi app:9000
+    file_server
     try_files {path} {path}/ /index.php?{query}
+
+    tls internal
 }

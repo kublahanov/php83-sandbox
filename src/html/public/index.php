@@ -14,7 +14,7 @@
 </head>
 <body>
 <div class="container">
-    <h1>🚀 PHP 8.3 Sandbox</h1>
+    <h1>🚀  PHP 8.3 Sandbox</h1>
 
     <div class="info">
         <h2>Системная информация:</h2>
