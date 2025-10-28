@@ -1,5 +1,7 @@
 #!/bin/bash
 
-# Скрипт для остановки Docker Compose
+# Скрипт для остановки стека
 
-docker compose -f ./docker/docker-compose.yml down
+cd "$(dirname "${BASH_SOURCE[0]}")/.." || exit
+echo "🚀  Running from: $(pwd)"
+docker compose down && echo "✅ Success!" || echo "❌ Failed!"

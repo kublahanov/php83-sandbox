@@ -1,5 +1,7 @@
 #!/bin/bash
 
-# Скрипт для запуска Docker Compose в фоновом режиме
+# Скрипт для запуска стека в фоновом режиме
 
-docker compose -f ./docker/docker-compose.yml up -d
+cd "$(dirname "${BASH_SOURCE[0]}")/.." || exit
+echo "🚀  Running from: $(pwd)"
+docker compose up -d && echo "✅ Success!" || echo "❌ Failed!"
