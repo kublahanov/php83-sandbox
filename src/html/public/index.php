@@ -1,9 +1,11 @@
 <?php
+
 $dbConfig = getenv('DB_DATABASE');
 $dbUser = getenv('DB_USERNAME');
 $dbPass = getenv('DB_PASSWORD');
 $dbHost = getenv('DB_HOST');
 $dbPort = getenv('DB_PORT');
+
 ?>
 <!DOCTYPE html>
 <html lang="ru">
@@ -49,7 +51,7 @@ $dbPort = getenv('DB_PORT');
         <div class="bg-gradient-to-r from-blue-600 to-purple-600 text-white p-8 rounded-2xl shadow-2xl mb-6">
             <i class="fas fa-rocket text-4xl mb-4"></i>
             <h1 class="text-4xl md:text-5xl font-bold mb-2">PHP 8.3 Sandbox</h1>
-            <p class="text-blue-100 text-lg">Добро пожаловать в вашу среду разработки!</p>
+            <p class="text-blue-100 text-lg">Добро пожаловать!</p>
         </div>
     </div>
 
@@ -92,7 +94,7 @@ $dbPort = getenv('DB_PORT');
                     'pdo' => ['PDO', 'blue'],
                     'pdo_pgsql' => ['PDO PostgreSQL', 'green'],
                     'redis' => ['Redis', 'red'],
-                    'bcmath' => ['BCMath', 'purple']
+                    'bcmath' => ['BCMath', 'purple'],
                 ];
 
                 foreach ($extensions as $ext => [$name, $color]) {
@@ -137,16 +139,19 @@ $dbPort = getenv('DB_PORT');
                     </div>
                     <div class="grid md:grid-cols-3 gap-4 text-sm">
                         <div class="bg-white p-3 rounded-lg">
-                            <div class="text-gray-500">База данных</div>
+                            <div class="text-gray-500">База данных:</div>
                             <div class="font-semibold"><?php echo $dbName; ?></div>
                         </div>
                         <div class="bg-white p-3 rounded-lg">
-                            <div class="text-gray-500">Пользователь</div>
+                            <div class="text-gray-500">Пользователь:</div>
                             <div class="font-semibold"><?php echo $user; ?></div>
                         </div>
                         <div class="bg-white p-3 rounded-lg">
-                            <div class="text-gray-500">Версия</div>
-                            <div class="font-semibold text-xs"><?php echo explode(' ', $version)[0]; ?></div>
+                            <div class="text-gray-500">Версия:</div>
+                            <div class="font-semibold text-sm">
+                                <?php echo explode(' ', $version)[0]; ?>
+                                <?php echo explode(' ', $version)[1]; ?>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -172,7 +177,7 @@ $dbPort = getenv('DB_PORT');
 
     <!-- Footer -->
     <div class="text-center mt-12 text-gray-500">
-        <p>С любовью ❤️ для разработчиков</p>
+        <p>&copy; From <a class="underline hover:no-underline" href="https://github.com/kublahanov">kublahanov</a> with ❤️!</p>
     </div>
 </div>
 </body>
