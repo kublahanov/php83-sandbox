@@ -6,13 +6,22 @@ $dbPass = getenv('DB_PASSWORD');
 $dbHost = getenv('DB_HOST');
 $dbPort = getenv('DB_PORT');
 
+$composerVersion = 'N/A';
+$composerCheck = shell_exec('composer --version 2>&1');
+
+if (preg_match('/Composer version ([0-9.]+)/', $composerCheck, $matches)) {
+    $composerVersion = $matches[1];
+}
+
+$title = 'PHP 8.3 Sandbox';
+
 ?>
 <!DOCTYPE html>
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PHP 8.3 Sandbox</title>
+    <title><?php echo $title; ?></title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <script>
@@ -35,8 +44,8 @@ $dbPort = getenv('DB_PORT');
                             },
                         },
                         float: {
-                            '0%, 100%': { transform: 'translateY(0)' },
-                            '50%': { transform: 'translateY(-10px)' },
+                            '0%, 100%': {transform: 'translateY(0)'},
+                            '50%': {transform: 'translateY(-10px)'},
                         }
                     }
                 }
@@ -50,7 +59,7 @@ $dbPort = getenv('DB_PORT');
     <div class="text-center mb-12 animate-float">
         <div class="bg-gradient-to-r from-blue-600 to-purple-600 text-white p-8 rounded-2xl shadow-2xl mb-6">
             <i class="fas fa-rocket text-4xl mb-4"></i>
-            <h1 class="text-4xl md:text-5xl font-bold mb-2">PHP 8.3 Sandbox</h1>
+            <h1 class="text-4xl md:text-5xl font-bold mb-2"><?php echo $title; ?></h1>
             <p class="text-blue-100 text-lg">Добро пожаловать!</p>
         </div>
     </div>
@@ -65,19 +74,27 @@ $dbPort = getenv('DB_PORT');
             <div class="space-y-3">
                 <div class="flex justify-between items-center p-3 bg-blue-50 rounded-lg">
                     <span class="font-medium text-gray-700">PHP Version:</span>
-                    <span class="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm font-semibold">
-                            <?php echo phpversion(); ?>
-                        </span>
+                    <span class="text-blue-800 bg-blue-100 px-3 py-1 rounded-full text-sm font-semibold">
+                        <?php echo phpversion(); ?>
+                    </span>
+                </div>
+                <div class="flex justify-between items-center p-3 bg-purple-50 rounded-lg">
+                    <span class="font-medium text-gray-700">Composer Version:</span>
+                    <span class="text-purple-800 bg-purple-100 px-3 py-1 rounded-full text-sm font-semibold">
+                        <?php echo $composerVersion; ?>
+                    </span>
                 </div>
                 <div class="flex justify-between items-center p-3 bg-green-50 rounded-lg">
                     <span class="font-medium text-gray-700">Web Server:</span>
-                    <span class="bg-green-100 text-green-800 px-3 py-1 rounded-full text-sm">
-                            <?php echo $_SERVER['SERVER_SOFTWARE'] ?? 'N/A'; ?>
-                        </span>
+                    <span class="text-green-800 bg-green-100 px-3 py-1 rounded-full text-sm">
+                        <?php echo $_SERVER['SERVER_SOFTWARE'] ?? 'N/A'; ?>
+                    </span>
                 </div>
-                <div class="p-3 bg-purple-50 rounded-lg">
-                    <span class="font-medium text-gray-700 block mb-1">Document Root:</span>
-                    <code class="text-sm text-purple-700 bg-purple-100 px-2 py-1 rounded"><?php echo $_SERVER['DOCUMENT_ROOT'] ?? 'N/A'; ?></code>
+                <div class="flex justify-between items-center p-3 bg-purple-50 rounded-lg">
+                    <span class="font-medium text-gray-700">Document Root:</span>
+                    <code class="text-purple-700 bg-purple-100 px-3 py-1 rounded-full text-xs">
+                        <?php echo $_SERVER['DOCUMENT_ROOT'] ?? 'N/A'; ?>
+                    </code>
                 </div>
             </div>
         </div>
@@ -95,6 +112,7 @@ $dbPort = getenv('DB_PORT');
                     'pdo_pgsql' => ['PDO PostgreSQL', 'green'],
                     'redis' => ['Redis', 'red'],
                     'bcmath' => ['BCMath', 'purple'],
+                    'non-existent extension' => ['Non-existent extension', 'black'],
                 ];
 
                 foreach ($extensions as $ext => [$name, $color]) {
@@ -105,7 +123,9 @@ $dbPort = getenv('DB_PORT');
                     ?>
                     <div class="flex items-center p-3 rounded-lg <?php echo $bgColor; ?>">
                         <i class="fas <?php echo $icon; ?> <?php echo $iconColor; ?> mr-2"></i>
-                        <span class="font-medium"><?php echo $name; ?></span>
+                        <span class="font-medium truncate sm:overflow-visible sm:whitespace-normal">
+                            <?php echo $name; ?>
+                        </span>
                     </div>
                 <?php } ?>
             </div>
@@ -160,7 +180,7 @@ $dbPort = getenv('DB_PORT');
                 ?>
                 <div class="flex items-center text-red-600 font-semibold">
                     <i class="fas fa-times-circle mr-2"></i>
-                    Ошибка подключения: <?php echo $e->getMessage(); ?>
+                    Ошибка подключения: <?php echo $e->getMessage(); ?>.
                 </div>
             <?php } ?>
         </div>
@@ -168,16 +188,19 @@ $dbPort = getenv('DB_PORT');
 
     <!-- Дополнительные ссылки -->
     <div class="text-center">
-        <a href="/test.php"
-           class="inline-flex items-center px-6 py-3 bg-gradient-to-r from-purple-600 to-pink-600 text-white font-semibold rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105">
+        <a href="/test.php" class="inline-flex items-center px-6 py-3 bg-gradient-to-r from-purple-600 to-pink-600 text-white font-semibold rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105">
             <i class="fas fa-code mr-2"></i>
-            Полная информация PHP (phpinfo)
+            Полная информация о PHP (phpinfo)
         </a>
     </div>
 
     <!-- Footer -->
     <div class="text-center mt-12 text-gray-500">
-        <p>&copy; From <a class="underline hover:no-underline" href="https://github.com/kublahanov">kublahanov</a> with ❤️!</p>
+        <p>
+            &copy; From
+            <a class="underline hover:no-underline" href="https://github.com/kublahanov">kublahanov</a>
+            with ❤️!
+        </p>
     </div>
 </div>
 </body>
