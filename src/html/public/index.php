@@ -1,3 +1,16 @@
+<?php
+$dbConfig = getenv('DB_DATABASE');
+$dbUser = getenv('DB_USERNAME');
+$dbPass = getenv('DB_PASSWORD');
+$dbHost = getenv('DB_HOST');
+$dbPort = getenv('DB_PORT');
+
+// $dbConfig = $_SERVER['DB_DATABASE'];
+// $dbUser = $_SERVER['DB_USERNAME'];
+// $dbPass = $_SERVER['DB_PASSWORD'];
+// $dbHost = $_SERVER['DB_HOST'];
+// $dbPort = $_SERVER['DB_PORT'];
+?>
 <!DOCTYPE html>
 <html lang="ru">
 <head>
@@ -56,13 +69,9 @@
 
     <h2>Проверка БД:</h2>
     <?php
-    $dbConfig = getenv('DB_DATABASE') ?: 'php83_sandbox';
-    $dbUser = getenv('DB_USERNAME') ?: 'php83_sandbox_user';
-    $dbPass = getenv('DB_PASSWORD') ?: 'php83_sandbox_password';
-
     try {
         $pdo = new PDO(
-            "pgsql:host=postgres;dbname=$dbConfig",
+            "pgsql:host=$dbHost;port=$dbPort;dbname=$dbConfig",
             $dbUser,
             $dbPass,
         );
