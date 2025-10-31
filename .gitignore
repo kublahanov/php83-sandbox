@@ -1,8 +1,11 @@
 .idea
 .vscode
-/data
-/docker/data
+
 !src/.gitkeep
 !src/html/.gitkeep
 !src/html/public/.gitkeep
 !src/html/public/index.php
+!src/html/public/index.html
+
+node_modules/
+package-lock.json

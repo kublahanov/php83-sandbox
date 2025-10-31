@@ -1,27 +1,9 @@
-<?php
-
-$dbConfig = getenv('DB_DATABASE');
-$dbUser = getenv('DB_USERNAME');
-$dbPass = getenv('DB_PASSWORD');
-$dbHost = getenv('DB_HOST');
-$dbPort = getenv('DB_PORT');
-
-$composerVersion = 'N/A';
-$composerCheck = shell_exec('composer --version 2>&1');
-
-if (preg_match('/Composer version ([0-9.]+)/', $composerCheck, $matches)) {
-    $composerVersion = $matches[1];
-}
-
-$title = 'PHP 8.3 Sandbox';
-
-?>
 <!DOCTYPE html>
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><?php echo $title; ?></title>
+    <title>PHP 8.3 Sandbox</title>
     <!-- Tailwind CSS -->
     <link href="/assets/css/tailwind.css" rel="stylesheet">
     <!-- Кастомные стили -->
@@ -35,7 +17,7 @@ $title = 'PHP 8.3 Sandbox';
     <div class="text-center mb-12 animate-float">
         <div class="bg-gradient-to-r from-blue-600 to-purple-600 text-white p-8 rounded-2xl shadow-2xl mb-6">
             <i class="fas fa-rocket text-4xl mb-4"></i>
-            <h1 class="text-4xl md:text-5xl font-bold mb-2"><?php echo $title; ?></h1>
+            <h1 class="text-4xl md:text-5xl font-bold mb-2">PHP 8.3 Sandbox</h1>
             <p class="text-blue-100 text-lg">Добро пожаловать!</p>
         </div>
     </div>
@@ -51,25 +33,25 @@ $title = 'PHP 8.3 Sandbox';
                 <div class="flex justify-between items-center p-3 bg-blue-50 rounded-lg">
                     <span class="font-medium text-gray-700">PHP Version:</span>
                     <span class="text-blue-800 bg-blue-100 px-3 py-1 rounded-full text-sm font-semibold">
-                        <?php echo phpversion(); ?>
+                        8.3.27
                     </span>
                 </div>
                 <div class="flex justify-between items-center p-3 bg-purple-50 rounded-lg">
                     <span class="font-medium text-gray-700">Composer Version:</span>
                     <span class="text-purple-800 bg-purple-100 px-3 py-1 rounded-full text-sm font-semibold">
-                        <?php echo $composerVersion; ?>
+                        2.8.12
                     </span>
                 </div>
                 <div class="flex justify-between items-center p-3 bg-green-50 rounded-lg">
                     <span class="font-medium text-gray-700">Web Server:</span>
                     <span class="text-green-800 bg-green-100 px-3 py-1 rounded-full text-sm">
-                        <?php echo $_SERVER['SERVER_SOFTWARE'] ?? 'N/A'; ?>
+                        Caddy/v2.7.6
                     </span>
                 </div>
                 <div class="flex justify-between items-center p-3 bg-red-50 rounded-lg">
                     <span class="font-medium text-gray-700">Document Root:</span>
                     <code class="text-red-700 bg-red-100 px-3 py-1 rounded-full text-xs">
-                        <?php echo $_SERVER['DOCUMENT_ROOT'] ?? 'N/A'; ?>
+                        /var/www/html/public
                     </code>
                 </div>
             </div>
@@ -82,28 +64,36 @@ $title = 'PHP 8.3 Sandbox';
                 Проверка расширений
             </h2>
             <div class="grid grid-cols-2 gap-3">
-                <?php
-                $extensions = [
-                    'pdo' => ['PDO', 'blue'],
-                    'pdo_pgsql' => ['PDO PostgreSQL', 'green'],
-                    'redis' => ['Redis', 'red'],
-                    'bcmath' => ['BCMath', 'purple'],
-                    'non-existent extension' => ['Non-existent extension', 'black'],
-                ];
-
-                foreach ($extensions as $ext => [$name, $color]) {
-                    $loaded = extension_loaded($ext);
-                    $bgColor = $loaded ? "bg-{$color}-100 text-{$color}-800" : "bg-gray-100 text-gray-500";
-                    $icon = $loaded ? 'fa-check-circle' : 'fa-times-circle';
-                    $iconColor = $loaded ? "text-{$color}-500" : "text-gray-400";
-                    ?>
-                    <div class="flex items-center p-3 rounded-lg <?php echo $bgColor; ?>">
-                        <i class="fas <?php echo $icon; ?> <?php echo $iconColor; ?> mr-2"></i>
-                        <span class="font-medium truncate sm:overflow-visible sm:whitespace-normal">
-                            <?php echo $name; ?>
-                        </span>
-                    </div>
-                <?php } ?>
+                <div class="flex items-center p-3 rounded-lg bg-blue-100 text-blue-800">
+                    <i class="fas fa-check-circle text-blue-500 mr-2"></i>
+                    <span class="font-medium truncate sm:overflow-visible sm:whitespace-normal">
+                        PDO
+                    </span>
+                </div>
+                <div class="flex items-center p-3 rounded-lg bg-green-100 text-green-800">
+                    <i class="fas fa-check-circle text-green-500 mr-2"></i>
+                    <span class="font-medium truncate sm:overflow-visible sm:whitespace-normal">
+                        PDO PostgreSQL
+                    </span>
+                </div>
+                <div class="flex items-center p-3 rounded-lg bg-red-100 text-red-800">
+                    <i class="fas fa-check-circle text-red-500 mr-2"></i>
+                    <span class="font-medium truncate sm:overflow-visible sm:whitespace-normal">
+                        Redis
+                    </span>
+                </div>
+                <div class="flex items-center p-3 rounded-lg bg-purple-100 text-purple-800">
+                    <i class="fas fa-check-circle text-purple-500 mr-2"></i>
+                    <span class="font-medium truncate sm:overflow-visible sm:whitespace-normal">
+                        BCMath
+                    </span>
+                </div>
+                <div class="flex items-center p-3 rounded-lg bg-gray-100 text-gray-500">
+                    <i class="fas fa-times-circle text-gray-400 mr-2"></i>
+                    <span class="font-medium truncate sm:overflow-visible sm:whitespace-normal">
+                        Non-existent extension
+                    </span>
+                </div>
             </div>
         </div>
     </div>
@@ -115,50 +105,28 @@ $title = 'PHP 8.3 Sandbox';
             Проверка подключения к БД
         </h2>
         <div class="bg-amber-50 rounded-lg p-4">
-            <?php
-            try {
-                $pdo = new PDO(
-                    "pgsql:host=$dbHost;port=$dbPort;dbname=$dbConfig",
-                    $dbUser,
-                    $dbPass
-                );
-
-                // Получаем дополнительную информацию
-                $version = $pdo->query('SELECT version()')->fetchColumn();
-                $dbName = $pdo->query('SELECT current_database()')->fetchColumn();
-                $user = $pdo->query('SELECT current_user')->fetchColumn();
-                ?>
-                <div class="space-y-3">
-                    <div class="flex items-center text-green-600 font-semibold">
-                        <i class="fas fa-check-circle mr-2"></i>
-                        Подключение к PostgreSQL успешно!
+            <div class="space-y-3">
+                <div class="flex items-center text-green-600 font-semibold">
+                    <i class="fas fa-check-circle mr-2"></i>
+                    Подключение к PostgreSQL успешно!
+                </div>
+                <div class="grid md:grid-cols-3 gap-4 text-sm">
+                    <div class="bg-white p-3 rounded-lg">
+                        <div class="text-gray-500">База данных:</div>
+                        <div class="font-semibold">php83_sandbox</div>
                     </div>
-                    <div class="grid md:grid-cols-3 gap-4 text-sm">
-                        <div class="bg-white p-3 rounded-lg">
-                            <div class="text-gray-500">База данных:</div>
-                            <div class="font-semibold"><?php echo $dbName; ?></div>
-                        </div>
-                        <div class="bg-white p-3 rounded-lg">
-                            <div class="text-gray-500">Пользователь:</div>
-                            <div class="font-semibold"><?php echo $user; ?></div>
-                        </div>
-                        <div class="bg-white p-3 rounded-lg">
-                            <div class="text-gray-500">Версия:</div>
-                            <div class="font-semibold text-sm">
-                                <?php echo explode(' ', $version)[0]; ?>
-                                <?php echo explode(' ', $version)[1]; ?>
-                            </div>
+                    <div class="bg-white p-3 rounded-lg">
+                        <div class="text-gray-500">Пользователь:</div>
+                        <div class="font-semibold">php83_sandbox_user</div>
+                    </div>
+                    <div class="bg-white p-3 rounded-lg">
+                        <div class="text-gray-500">Версия:</div>
+                        <div class="font-semibold text-sm">
+                            PostgreSQL 15.14
                         </div>
                     </div>
                 </div>
-                <?php
-            } catch (PDOException $e) {
-                ?>
-                <div class="flex items-center text-red-600 font-semibold">
-                    <i class="fas fa-times-circle mr-2"></i>
-                    Ошибка подключения: <?php echo $e->getMessage(); ?>.
-                </div>
-            <?php } ?>
+            </div>
         </div>
     </div>
 
