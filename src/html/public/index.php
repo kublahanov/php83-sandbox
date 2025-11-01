@@ -163,11 +163,63 @@ $title = 'PHP 8.3 Sandbox';
     </div>
 
     <!-- Дополнительные ссылки -->
-    <div class="text-center">
-        <a href="/test.php" class="inline-flex items-center px-6 py-3 bg-gradient-to-r from-purple-600 to-pink-600 text-white font-semibold rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105">
-            <i class="fas fa-code mr-2"></i>
-            Полная информация о PHP (phpinfo)
-        </a>
+    <div class="bg-white rounded-xl shadow-lg p-6 border-l-4 border-purple-500 mt-8">
+        <h2 class="text-xl font-bold text-gray-800 mb-4 flex items-center">
+            <i class="fas fa-external-link-alt text-purple-500 mr-2"></i>
+            Полезные ссылки
+        </h2>
+        <div class="grid md:grid-cols-2 gap-4">
+            <a href="/test.php"
+               class="flex items-center p-4 bg-blue-50 rounded-lg border border-blue-200 hover:bg-blue-100 transition-colors group">
+                <div class="bg-blue-100 p-3 rounded-lg mr-4">
+                    <i class="fas fa-code text-blue-600"></i>
+                </div>
+                <div>
+                    <div class="font-semibold text-gray-800">PHP Information</div>
+                    <div class="text-sm text-gray-600">Полная информация о PHP</div>
+                </div>
+                <i class="fas fa-chevron-right text-blue-400 ml-auto group-hover:translate-x-1 transition-transform"></i>
+            </a>
+
+            <a href="https://github.com/kublahanov/php83-sandbox"
+               target="_blank"
+               class="flex items-center p-4 bg-purple-50 rounded-lg border border-purple-200 hover:bg-purple-100 transition-colors group">
+                <div class="bg-purple-100 p-3 rounded-lg mr-4">
+                    <i class="fab fa-github text-purple-600"></i>
+                </div>
+                <div>
+                    <div class="font-semibold text-gray-800">GitHub Repository</div>
+                    <div class="text-sm text-gray-600">Исходный код проекта</div>
+                </div>
+                <i class="fas fa-external-link-alt text-purple-400 ml-auto"></i>
+            </a>
+
+            <a href="https://github.com/kublahanov/php83-sandbox/blob/main/README.md"
+               target="_blank"
+               class="flex items-center p-4 bg-green-50 rounded-lg border border-green-200 hover:bg-green-100 transition-colors group">
+                <div class="bg-green-100 p-3 rounded-lg mr-4">
+                    <i class="fas fa-book text-green-600"></i>
+                </div>
+                <div>
+                    <div class="font-semibold text-gray-800">Documentation</div>
+                    <div class="text-sm text-gray-600">README и документация</div>
+                </div>
+                <i class="fas fa-external-link-alt text-green-400 ml-auto"></i>
+            </a>
+
+            <a href="https://github.com/kublahanov/php83-sandbox/issues"
+               target="_blank"
+               class="flex items-center p-4 bg-red-50 rounded-lg border border-red-200 hover:bg-red-100 transition-colors group">
+                <div class="bg-red-100 p-3 rounded-lg mr-4">
+                    <i class="fas fa-bug text-red-600"></i>
+                </div>
+                <div>
+                    <div class="font-semibold text-gray-800">Report Issues</div>
+                    <div class="text-sm text-gray-600">Сообщить об ошибках</div>
+                </div>
+                <i class="fas fa-external-link-alt text-red-400 ml-auto"></i>
+            </a>
+        </div>
     </div>
 
     <!-- Footer -->
