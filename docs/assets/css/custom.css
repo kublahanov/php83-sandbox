@@ -1,0 +1,39 @@
+/* Кастомные анимации */
+@keyframes gradient {
+    0%, 100% {
+        background-size: 200% 200%;
+        background-position: left center;
+    }
+    50% {
+        background-size: 200% 200%;
+        background-position: right center;
+    }
+}
+
+@keyframes float {
+    0%, 100% {
+        transform: translateY(0px);
+    }
+    50% {
+        transform: translateY(-10px);
+    }
+}
+
+.animate-gradient {
+    animation: gradient 8s linear infinite;
+}
+
+.animate-float {
+    animation: float 6s ease-in-out infinite;
+}
+
+/* Дополнительные кастомные стили если понадобятся */
+.custom-card {
+    border-left: 4px solid #007cba;
+    transition: all 0.3s ease;
+}
+
+.custom-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+}
