@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PHP 8.3 Sandbox - Демо</title>
+    <!-- Tailwind CSS -->
+    <link href="assets/css/tailwind.css" rel="stylesheet">
+    <!-- Кастомные стили -->
+    <link href="assets/css/custom.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link href="assets/fonts/fontawesome/css/all.min.css" rel="stylesheet">
+</head>
+<body class="bg-gradient-to-br from-blue-50 to-indigo-100 min-h-screen">
+<div class="container mx-auto px-4 py-8">
+    <!-- Header -->
+    <div class="text-center mb-12 animate-float">
+        <div class="bg-gradient-to-r from-blue-600 to-purple-600 text-white p-8 rounded-2xl shadow-2xl mb-6">
+            <i class="fas fa-rocket text-4xl mb-4"></i>
+            <h1 class="text-4xl md:text-5xl font-bold mb-2">PHP 8.3 Sandbox</h1>
+            <p class="text-blue-100 text-lg">Добро пожаловать!</p>
+        </div>
+    </div>
+
+    <!-- Добавьте в начало или конец -->
+    <div class="text-center mb-4">
+        <a href="index.html" class="inline-flex items-center text-blue-600 hover:text-blue-800">
+            <i class="fas fa-arrow-left mr-2"></i>
+            Назад к документации
+        </a>
+    </div>
+
+    <div class="grid md:grid-cols-2 gap-8 mb-8">
+        <!-- Системная информация -->
+        <div class="bg-white rounded-xl shadow-lg p-6 border-l-4 border-blue-500">
+            <h2 class="text-xl font-bold text-gray-800 mb-4 flex items-center">
+                <i class="fas fa-info-circle text-blue-500 mr-2"></i>
+                Системная информация
+            </h2>
+            <div class="space-y-3">
+                <div class="flex justify-between items-center p-3 bg-blue-50 rounded-lg">
+                    <span class="font-medium text-gray-700">PHP Version:</span>
+                    <span class="text-blue-800 bg-blue-100 px-3 py-1 rounded-full text-sm font-semibold">
+                        8.3.27
+                    </span>
+                </div>
+                <div class="flex justify-between items-center p-3 bg-purple-50 rounded-lg">
+                    <span class="font-medium text-gray-700">Composer Version:</span>
+                    <span class="text-purple-800 bg-purple-100 px-3 py-1 rounded-full text-sm font-semibold">
+                        2.8.12
+                    </span>
+                </div>
+                <div class="flex justify-between items-center p-3 bg-green-50 rounded-lg">
+                    <span class="font-medium text-gray-700">Web Server:</span>
+                    <span class="text-green-800 bg-green-100 px-3 py-1 rounded-full text-sm">
+                        Caddy/v2.7.6
+                    </span>
+                </div>
+                <div class="flex justify-between items-center p-3 bg-red-50 rounded-lg">
+                    <span class="font-medium text-gray-700">Document Root:</span>
+                    <code class="text-red-700 bg-red-100 px-3 py-1 rounded-full text-xs">
+                        /var/www/html/public
+                    </code>
+                </div>
+            </div>
+        </div>
+
+        <!-- Проверка расширений -->
+        <div class="bg-white rounded-xl shadow-lg p-6 border-l-4 border-green-500">
+            <h2 class="text-xl font-bold text-gray-800 mb-4 flex items-center">
+                <i class="fas fa-plug text-green-500 mr-2"></i>
+                Проверка расширений
+            </h2>
+            <div class="grid grid-cols-2 gap-3">
+                <div class="flex items-center p-3 rounded-lg bg-blue-100 text-blue-800">
+                    <i class="fas fa-check-circle text-blue-500 mr-2"></i>
+                    <span class="font-medium truncate sm:overflow-visible sm:whitespace-normal">
+                        PDO
+                    </span>
+                </div>
+                <div class="flex items-center p-3 rounded-lg bg-green-100 text-green-800">
+                    <i class="fas fa-check-circle text-green-500 mr-2"></i>
+                    <span class="font-medium truncate sm:overflow-visible sm:whitespace-normal">
+                        PDO PostgreSQL
+                    </span>
+                </div>
+                <div class="flex items-center p-3 rounded-lg bg-red-100 text-red-800">
+                    <i class="fas fa-check-circle text-red-500 mr-2"></i>
+                    <span class="font-medium truncate sm:overflow-visible sm:whitespace-normal">
+                        Redis
+                    </span>
+                </div>
+                <div class="flex items-center p-3 rounded-lg bg-purple-100 text-purple-800">
+                    <i class="fas fa-check-circle text-purple-500 mr-2"></i>
+                    <span class="font-medium truncate sm:overflow-visible sm:whitespace-normal">
+                        BCMath
+                    </span>
+                </div>
+                <div class="flex items-center p-3 rounded-lg bg-gray-100 text-gray-500">
+                    <i class="fas fa-times-circle text-gray-400 mr-2"></i>
+                    <span class="font-medium truncate sm:overflow-visible sm:whitespace-normal">
+                        Non-existent extension
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Проверка БД -->
+    <div class="bg-white rounded-xl shadow-lg p-6 border-l-4 border-amber-500 mb-8">
+        <h2 class="text-xl font-bold text-gray-800 mb-4 flex items-center">
+            <i class="fas fa-database text-amber-500 mr-2"></i>
+            Проверка подключения к БД
+        </h2>
+        <div class="bg-amber-50 rounded-lg p-4">
+            <div class="space-y-3">
+                <div class="flex items-center text-green-600 font-semibold">
+                    <i class="fas fa-check-circle mr-2"></i>
+                    Подключение к PostgreSQL успешно!
+                </div>
+                <div class="grid md:grid-cols-3 gap-4 text-sm">
+                    <div class="bg-white p-3 rounded-lg">
+                        <div class="text-gray-500">База данных:</div>
+                        <div class="font-semibold">php83_sandbox</div>
+                    </div>
+                    <div class="bg-white p-3 rounded-lg">
+                        <div class="text-gray-500">Пользователь:</div>
+                        <div class="font-semibold">php83_sandbox_user</div>
+                    </div>
+                    <div class="bg-white p-3 rounded-lg">
+                        <div class="text-gray-500">Версия:</div>
+                        <div class="font-semibold text-sm">
+                            PostgreSQL 15.14
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Дополнительные ссылки -->
+    <div class="text-center">
+        <a href="https://github.com/kublahanov/php83-sandbox" class="inline-flex items-center px-6 py-3 bg-gradient-to-r from-purple-600 to-pink-600 text-white font-semibold rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105">
+            <i class="fas fa-code mr-2"></i>
+            Страница проекта на Github
+        </a>
+    </div>
+
+    <!-- Footer -->
+    <div class="text-center mt-12 text-gray-500">
+        <p>
+            &copy; From
+            <a class="underline hover:no-underline" href="https://github.com/kublahanov">kublahanov</a>
+            with ❤️!
+        </p>
+    </div>
+</div>
+</body>
+</html>
