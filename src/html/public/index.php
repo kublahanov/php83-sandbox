@@ -88,7 +88,7 @@ $title = 'PHP 8.3 Sandbox';
                     'pdo_pgsql' => ['PDO PostgreSQL', 'green'],
                     'redis' => ['Redis', 'red'],
                     'bcmath' => ['BCMath', 'purple'],
-                    'non-existent extension' => ['Non-existent extension', 'black'],
+                    // 'non-existent extension' => ['Non-existent extension', 'black'],
                 ];
 
                 foreach ($extensions as $ext => [$name, $color]) {
@@ -104,6 +104,19 @@ $title = 'PHP 8.3 Sandbox';
                         </span>
                     </div>
                 <?php } ?>
+            </div>
+            <div class="grid grid-cols-1 mt-4">
+                <a href="/test.php"
+                   class="flex items-center p-4 bg-blue-50 rounded-lg border border-blue-200 hover:bg-blue-100 transition-colors group">
+                    <div class="bg-blue-100 p-3 rounded-lg mr-4">
+                        <i class="fas fa-code text-blue-600"></i>
+                    </div>
+                    <div>
+                        <div class="font-semibold text-gray-800">PHP Information</div>
+                        <div class="text-sm text-gray-600">Полная информация о PHP</div>
+                    </div>
+                    <i class="fas fa-chevron-right text-blue-400 ml-auto group-hover:translate-x-1 transition-transform"></i>
+                </a>
             </div>
         </div>
     </div>
@@ -169,16 +182,16 @@ $title = 'PHP 8.3 Sandbox';
             Полезные ссылки
         </h2>
         <div class="grid md:grid-cols-2 gap-4">
-            <a href="/test.php"
+            <a href="https://kublahanov.github.io/php83-sandbox/"
                class="flex items-center p-4 bg-blue-50 rounded-lg border border-blue-200 hover:bg-blue-100 transition-colors group">
                 <div class="bg-blue-100 p-3 rounded-lg mr-4">
                     <i class="fas fa-code text-blue-600"></i>
                 </div>
                 <div>
-                    <div class="font-semibold text-gray-800">PHP Information</div>
-                    <div class="text-sm text-gray-600">Полная информация о PHP</div>
+                    <div class="font-semibold text-gray-800">Home Page</div>
+                    <div class="text-sm text-gray-600">Страница проекта</div>
                 </div>
-                <i class="fas fa-chevron-right text-blue-400 ml-auto group-hover:translate-x-1 transition-transform"></i>
+                <i class="fas fa-external-link-alt text-purple-400 ml-auto"></i>
             </a>
 
             <a href="https://github.com/kublahanov/php83-sandbox"

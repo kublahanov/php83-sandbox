@@ -1,7 +1,8 @@
 {
   "name": "php83-sandbox",
   "scripts": {
-    "build:css": "tailwindcss -i input.css -o src/html/public/assets/css/tailwind.css --minify"
+    "php-build:css": "tailwindcss -i input.css -o src/html/public/assets/css/tailwind.css --minify --content './src/html/public/**/*.php'",
+    "html-build:css": "tailwindcss -i input.css -o docs/assets/css/tailwind.css --minify --content './docs/**/*.html'"
   },
   "devDependencies": {
     "tailwindcss": "^3.3.0"
