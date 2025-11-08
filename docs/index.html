@@ -10,128 +10,37 @@
     <link href="assets/css/custom.css" rel="stylesheet">
     <!-- Font Awesome -->
     <link href="assets/fonts/fontawesome/css/all.min.css" rel="stylesheet">
-
-<!--    <script src="https://cdn.tailwindcss.com"></script>-->
-<!--    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">-->
-
-    <style>
-        @keyframes float {
-            0%, 100% { transform: translateY(0px); }
-            50% { transform: translateY(-5px); }
-        }
-        .animate-float { animation: float 6s ease-in-out infinite; }
-
-        /* Стили для Markdown-like контента */
-        .markdown-body { color: #24292f; }
-        .markdown-body h1, .markdown-body h2 { border-bottom: 1px solid #d0d7de; padding-bottom: 0.3em; }
-        .markdown-body code { background: #f6f8fa; padding: 0.2em 0.4em; border-radius: 3px; font-size: 0.9em; }
-        .markdown-body pre { background: #f6f8fa; padding: 1em; border-radius: 6px; overflow-x: auto; }
-        .markdown-body ul { list-style-type: disc; margin-left: 1.5em; }
-    </style>
+    <!-- Marked JS -->
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 </head>
 <body class="bg-gray-50 min-h-screen">
-<div class="container mx-auto px-4 py-8 max-w-4xl">
-    <!-- Хедер -->
+<div class="container mx-auto px-4 py-8">
+    <!-- Шапка -->
     <header class="text-center mb-12 animate-float">
         <div class="bg-gradient-to-r from-blue-600 to-purple-600 text-white p-8 rounded-2xl shadow-2xl mb-6">
-            <i class="fas fa-docker text-4xl mb-4"></i>
+            <i class="fas fa-rocket text-4xl mb-4"></i>
             <h1 class="text-4xl md:text-5xl font-bold mb-2">PHP 8.3 Sandbox</h1>
-            <p class="text-blue-100 text-lg">Docker Development Environment</p>
-
+            <p class="text-blue-100 text-lg">Добро пожаловать!</p>
             <!-- Навигация -->
             <div class="mt-6 flex justify-center space-x-4">
-                <a href="#features" class="px-4 py-2 bg-white/20 rounded-lg hover:bg-white/30 transition-colors">
-                    <i class="fas fa-star mr-2"></i>Возможности
-                </a>
-                <a href="#quick-start" class="px-4 py-2 bg-white/20 rounded-lg hover:bg-white/30 transition-colors">
-                    <i class="fas fa-rocket mr-2"></i>Быстрый старт
+                <a href="/" class="px-4 py-2 bg-white/20 rounded-lg hover:bg-white/30 transition-colors">
+                    <i class="fas fa-info-circle mr-2"></i>
+                    Инструкция
                 </a>
                 <a href="demo.html" class="px-4 py-2 bg-white/20 rounded-lg hover:bg-white/30 transition-colors">
-                    <i class="fas fa-eye mr-2"></i>Демо
+                    <i class="fas fa-eye mr-2"></i>
+                    Демо
                 </a>
             </div>
         </div>
     </header>
 
     <!-- Основной контент (README) -->
-    <div class="markdown-body bg-white rounded-xl shadow-lg p-8">
-        <!-- Описание проекта -->
-        <section class="mb-8">
-            <h2 class="text-2xl font-bold text-gray-800 mb-4">🚀 О проекте</h2>
-            <p class="text-gray-600 mb-4">
-                Готовое Docker окружение для быстрого старта разработки на PHP 8.3 с полным стеком технологий.
-            </p>
-        </section>
-
-        <!-- Возможности -->
-        <section id="features" class="mb-8">
-            <h2 class="text-2xl font-bold text-gray-800 mb-4">⭐ Возможности</h2>
-            <div class="grid md:grid-cols-2 gap-4">
-                <div class="flex items-start p-4 bg-blue-50 rounded-lg">
-                    <i class="fas fa-check text-green-500 mt-1 mr-3"></i>
-                    <div>
-                        <h3 class="font-semibold">PHP 8.3</h3>
-                        <p class="text-sm text-gray-600">Последняя версия PHP с FPM и CLI</p>
-                    </div>
-                </div>
-                <div class="flex items-start p-4 bg-green-50 rounded-lg">
-                    <i class="fas fa-database text-green-500 mt-1 mr-3"></i>
-                    <div>
-                        <h3 class="font-semibold">PostgreSQL 15</h3>
-                        <p class="text-sm text-gray-600">Мощная реляционная БД</p>
-                    </div>
-                </div>
-                <div class="flex items-start p-4 bg-purple-50 rounded-lg">
-                    <i class="fas fa-server text-purple-500 mt-1 mr-3"></i>
-                    <div>
-                        <h3 class="font-semibold">Caddy Server</h3>
-                        <p class="text-sm text-gray-600">Современный веб-сервер с автоматическим HTTPS</p>
-                    </div>
-                </div>
-                <div class="flex items-start p-4 bg-yellow-50 rounded-lg">
-                    <i class="fas fa-boxes text-yellow-500 mt-1 mr-3"></i>
-                    <div>
-                        <h3 class="font-semibold">Полный стек</h3>
-                        <p class="text-sm text-gray-600">Composer, расширения, Redis готовы к работе</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Быстрый старт -->
-        <section id="quick-start" class="mb-8">
-            <h2 class="text-2xl font-bold text-gray-800 mb-4">⚡ Быстрый старт</h2>
-
-            <div class="bg-gray-50 p-6 rounded-lg mb-4">
-                <h3 class="font-semibold mb-3">1. Клонирование репозитория</h3>
-                <pre><code>git clone https://github.com/kublahanov/php83-sandbox
-cd php83-sandbox</code></pre>
-            </div>
-
-            <div class="bg-gray-50 p-6 rounded-lg mb-4">
-                <h3 class="font-semibold mb-3">2. Запуск окружения</h3>
-                <pre><code>docker compose up -d</code></pre>
-            </div>
-
-            <div class="bg-gray-50 p-6 rounded-lg">
-                <h3 class="font-semibold mb-3">3. Проверка работы</h3>
-                <pre><code># Откройте в браузере
-https://localhost</code></pre>
-            </div>
-        </section>
-
-        <!-- Структура проекта -->
-        <section class="mb-8">
-            <h2 class="text-2xl font-bold text-gray-800 mb-4">📁 Структура проекта</h2>
-            <pre><code>php83-sandbox/
-├── docker-compose.yml
-├── src/                    # Исходники вашего приложения
-├── docker/                 # Docker конфигурации
-│   ├── php83/             # PHP 8.3 образ
-│   ├── postgres/          # PostgreSQL образ
-│   └── caddy/             # Caddy веб-сервер
-└── docs/                   # Документация</code></pre>
-        </section>
+    <div id="readme-content" class="p-6 markdown-body">
+        <div class="text-center py-8">
+            <i class="fas fa-spinner fa-spin text-2xl text-blue-600 mb-4"></i>
+            <p class="text-gray-600">Загрузка документации...</p>
+        </div>
     </div>
 
     <!-- Футер с ссылками -->
@@ -156,4 +65,24 @@ https://localhost</code></pre>
     </footer>
 </div>
 </body>
+<script>
+// Динамически загружаем и рендерим README
+fetch('https://raw.githubusercontent.com/kublahanov/php83-sandbox/main/README.md')
+    .then(response => response.text())
+    .then(markdown => {
+        document.getElementById('readme-content').innerHTML = marked.parse(markdown);
+    })
+    .catch(error => {
+        document.getElementById('readme-content').innerHTML = `
+        <div class="text-center py-8 text-red-600">
+            <i class="fas fa-exclamation-triangle text-2xl mb-4"></i>
+            <p>Не удалось загрузить документацию</p>
+            <a href="https://github.com/kublahanov/php83-sandbox/blob/main/README.md"
+               class="text-blue-600 underline mt-2 inline-block">
+                Посмотреть на GitHub
+            </a>
+        </div>
+    `;
+    });
+</script>
 </html>
