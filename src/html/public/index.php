@@ -31,12 +31,14 @@ $title = 'PHP 8.3 Sandbox';
 </head>
 <body class="bg-gradient-to-br from-blue-50 to-indigo-100 min-h-screen">
 <div class="container mx-auto px-4 py-8">
-    <!-- Header -->
+    <!-- Шапка -->
     <div class="text-center mb-12 animate-float">
         <div class="bg-gradient-to-r from-blue-600 to-purple-600 text-white p-8 rounded-2xl shadow-2xl mb-6">
             <i class="fas fa-rocket text-4xl mb-4"></i>
             <h1 class="text-4xl md:text-5xl font-bold mb-2"><?php echo $title; ?></h1>
-            <p class="text-blue-100 text-lg">Добро пожаловать!</p>
+
+            <!-- Приветствие -->
+            <p class="text-blue-100 text-lg mt-8">Добро пожаловать!</p>
         </div>
     </div>
 
@@ -44,7 +46,7 @@ $title = 'PHP 8.3 Sandbox';
         <!-- Системная информация -->
         <div class="bg-white rounded-xl shadow-lg p-6 border-l-4 border-blue-500">
             <h2 class="text-xl font-bold text-gray-800 mb-4 flex items-center">
-                <i class="fas fa-info-circle text-blue-500 mr-2"></i>
+                <i class="fas fa-info-circle text-blue-500 mr-3"></i>
                 Системная информация
             </h2>
             <div class="space-y-3">
@@ -78,7 +80,7 @@ $title = 'PHP 8.3 Sandbox';
         <!-- Проверка расширений -->
         <div class="bg-white rounded-xl shadow-lg p-6 border-l-4 border-green-500">
             <h2 class="text-xl font-bold text-gray-800 mb-4 flex items-center">
-                <i class="fas fa-plug text-green-500 mr-2"></i>
+                <i class="fas fa-plug text-green-500 mr-3"></i>
                 Проверка расширений
             </h2>
             <div class="grid grid-cols-2 gap-3">
@@ -98,7 +100,7 @@ $title = 'PHP 8.3 Sandbox';
                     $iconColor = $loaded ? "text-{$color}-500" : "text-gray-400";
                     ?>
                     <div class="flex items-center p-3 rounded-lg <?php echo $bgColor; ?>">
-                        <i class="fas <?php echo $icon; ?> <?php echo $iconColor; ?> mr-2"></i>
+                        <i class="fas <?php echo $icon; ?> <?php echo $iconColor; ?> mr-3"></i>
                         <span class="font-medium truncate sm:overflow-visible sm:whitespace-normal">
                             <?php echo $name; ?>
                         </span>
@@ -121,10 +123,10 @@ $title = 'PHP 8.3 Sandbox';
         </div>
     </div>
 
-    <!-- Проверка БД -->
+    <!-- Проверка подключения к БД -->
     <div class="bg-white rounded-xl shadow-lg p-6 border-l-4 border-amber-500 mb-8">
         <h2 class="text-xl font-bold text-gray-800 mb-4 flex items-center">
-            <i class="fas fa-database text-amber-500 mr-2"></i>
+            <i class="fas fa-database text-amber-500 mr-3"></i>
             Проверка подключения к БД
         </h2>
         <div class="bg-amber-50 rounded-lg p-4">
@@ -175,10 +177,10 @@ $title = 'PHP 8.3 Sandbox';
         </div>
     </div>
 
-    <!-- Дополнительные ссылки -->
+    <!-- Полезные ссылки -->
     <div class="bg-white rounded-xl shadow-lg p-6 border-l-4 border-purple-500 mt-8">
         <h2 class="text-xl font-bold text-gray-800 mb-4 flex items-center">
-            <i class="fas fa-external-link-alt text-purple-500 mr-2"></i>
+            <i class="fas fa-external-link-alt text-purple-500 mr-3"></i>
             Полезные ссылки
         </h2>
         <div class="grid md:grid-cols-2 gap-4">
@@ -235,14 +237,14 @@ $title = 'PHP 8.3 Sandbox';
         </div>
     </div>
 
-    <!-- Footer -->
-    <div class="text-center mt-12 text-gray-500">
+    <!-- Подвал -->
+    <footer class="text-center mt-12 text-gray-500">
         <p>
             &copy; From
             <a class="underline hover:no-underline" href="https://github.com/kublahanov">kublahanov</a>
             with ❤️!
         </p>
-    </div>
+    </footer>
 </div>
 </body>
 </html>
