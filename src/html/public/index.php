@@ -30,7 +30,7 @@ $title = 'PHP 8.3 Sandbox';
     <link href="/assets/fonts/fontawesome/css/all.min.css" rel="stylesheet">
 </head>
 <body class="bg-gradient-to-br from-blue-50 to-indigo-100 min-h-screen">
-<div class="container mx-auto px-4 py-8">
+<div class="container mx-auto px-4 py-8 max-w-5xl">
     <!-- Шапка -->
     <div class="text-center mb-12 animate-float">
         <div class="bg-gradient-to-r from-blue-600 to-purple-600 text-white p-8 rounded-2xl shadow-2xl mb-6">
